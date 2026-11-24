@@ -1,0 +1,248 @@
+# CrossTL translation matrix: SPIR-V to CUDA
+
+Measured on commit [`35ed8c7`](https://github.com/CrossGL/crosstl/commit/35ed8c7dc43264b625206cb6bf60d0858d205616) at 2026-11-24T12:11:45Z by the [Coverage workflow](https://github.com/CrossGL/crosstl/actions/workflows/coverage.yml). CrossTL translated each native SPIR-V probe whose feature CUDA has too straight to CUDA, and nvcc checked the result. It is compile-only. [COVERAGE.md](../COVERAGE.md#translation-matrix) describes the matrix and has every other cell.
+
+Score 5.2 %: 13 supported, 0 refused, 236 wrong, 2 untested.
+
+## Gaps
+
+<details>
+<summary>236 gaps: 0 refused, 236 wrong</summary>
+
+Wrong, by cause:
+
+- `expression must be a modifiable lvalue` (5): `array-initializer`, `constant-array`, `constant-vector-array`, `reserved-global-name`, `zero-initializer`
+- `identifier "<feature>" is undefined in device code` (4): `num-subgroups`, `subgroup-id`, `subgroup-invocation-id`, `subgroup-size`
+- `ptxas /tmp/tmpxft_0000cd1c_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error` (2): `global-constant`, `volatile-buffer`
+- `ptxas /tmp/tmpxft_0000cda5_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error` (2): `for-loop`, `while-loop`
+- `ptxas /tmp/tmpxft_0000d6be_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error` (2): `storage-image`, `unorm-storage-image`
+- `no instance of overloaded function "acosh" matches the argument list`: `Acosh`
+- `no instance of overloaded function "asinh" matches the argument list`: `Asinh`
+- `no instance of overloaded function "atanh" matches the argument list`: `Atanh`
+- `no instance of overloaded function "fmax" matches the argument list`: `NMax`
+- `no instance of overloaded function "fmin" matches the argument list`: `NMin`
+- `no operator "=" matches these operands`: `OpBitCount`
+- `ptxas /tmp/tmpxft_0000cb3e_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `barrier-in-loop`
+- `ptxas /tmp/tmpxft_0000cb8d_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `invocation-id-in-helper`
+- `ptxas /tmp/tmpxft_0000cbc2_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `num-workgroups`
+- `ptxas /tmp/tmpxft_0000cbd4_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `local-invocation-id`
+- `ptxas /tmp/tmpxft_0000cc0c_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `restrict-buffer`
+- `ptxas /tmp/tmpxft_0000cc1a_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `local-invocation-index`
+- `ptxas /tmp/tmpxft_0000cc4a_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `shared-2d-array`
+- `ptxas /tmp/tmpxft_0000cc59_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `shared-memory`
+- `ptxas /tmp/tmpxft_0000cc66_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `workgroup-id`
+- `ptxas /tmp/tmpxft_0000cc90_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `block-scope`
+- `ptxas /tmp/tmpxft_0000cca2_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `workgroup-size`
+- `ptxas /tmp/tmpxft_0000cca5_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `shared-memory-in-helper`
+- `ptxas /tmp/tmpxft_0000ccd3_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `break`
+- `ptxas /tmp/tmpxft_0000cce4_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `shared-struct-array`
+- `ptxas /tmp/tmpxft_0000cce7_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `aggregate-inout-parameter`
+- `ptxas /tmp/tmpxft_0000cd16_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `chained-conditional`
+- `ptxas /tmp/tmpxft_0000cd28_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `array-parameter`
+- `ptxas /tmp/tmpxft_0000cd2e_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `shared-vector-array`
+- `ptxas /tmp/tmpxft_0000cd59_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `conditional-expression`
+- `ptxas /tmp/tmpxft_0000cd60_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `condition-assignment`
+- `ptxas /tmp/tmpxft_0000cd6c_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `control-attribute`
+- `ptxas /tmp/tmpxft_0000cd6d_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `do-while-loop`
+- `ptxas /tmp/tmpxft_0000cd9f_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `conditional-side-effect`
+- `ptxas /tmp/tmpxft_0000cdb6_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `early-return`
+- `ptxas /tmp/tmpxft_0000cde6_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `const-parameter`
+- `ptxas /tmp/tmpxft_0000cdec_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `for-loop-variants`
+- `ptxas /tmp/tmpxft_0000cdf6_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `empty-statement`
+- `ptxas /tmp/tmpxft_0000ce02_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `default-only-switch`
+- `ptxas /tmp/tmpxft_0000ce29_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `continue`
+- `ptxas /tmp/tmpxft_0000ce2f_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `forward-declaration`
+- `ptxas /tmp/tmpxft_0000ce3b_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `float-loop-counter`
+- `ptxas /tmp/tmpxft_0000ce46_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `do-while-continue`
+- `ptxas /tmp/tmpxft_0000ce6d_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `function-overloading`
+- `ptxas /tmp/tmpxft_0000ce73_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `function-call`
+- `ptxas /tmp/tmpxft_0000ce7e_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `infinite-loop`
+- `ptxas /tmp/tmpxft_0000ce8a_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `intrinsic-name`
+- `ptxas /tmp/tmpxft_0000ceb9_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `loop-return`
+- `ptxas /tmp/tmpxft_0000cec5_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `inout-argument-lvalues`
+- `ptxas /tmp/tmpxft_0000ced1_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `loop-condition-call`
+- `ptxas /tmp/tmpxft_0000cefa_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `multi-variable-loop`
+- `ptxas /tmp/tmpxft_0000cf02_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `global-shadowing`
+- `ptxas /tmp/tmpxft_0000cf0a_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `inout-parameter`
+- `ptxas /tmp/tmpxft_0000cf18_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `loop-counter-write`
+- `ptxas /tmp/tmpxft_0000cf3f_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `nested-call`
+- `ptxas /tmp/tmpxft_0000cf4b_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `if-else`
+- `ptxas /tmp/tmpxft_0000cf5c_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `loop-in-switch`
+- `ptxas /tmp/tmpxft_0000cf87_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `nested-loop`
+- `ptxas /tmp/tmpxft_0000cf8d_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `nested-switch`
+- `ptxas /tmp/tmpxft_0000cf9e_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `sibling-redeclaration`
+- `ptxas /tmp/tmpxft_0000cfa4_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `struct-return`
+- `ptxas /tmp/tmpxft_0000cfca_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `switch-fallthrough`
+- `ptxas /tmp/tmpxft_0000cfd0_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `out-parameter`
+- `ptxas /tmp/tmpxft_0000cfe2_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `switch`
+- `ptxas /tmp/tmpxft_0000cfe8_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `struct-array-parameter`
+- `ptxas /tmp/tmpxft_0000d00e_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `switch-in-loop`
+- `ptxas /tmp/tmpxft_0000d014_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `out-parameter-forwarding`
+- `ptxas /tmp/tmpxft_0000d027_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `switch-case-scope`
+- `ptxas /tmp/tmpxft_0000d02d_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `struct-conditional`
+- `ptxas /tmp/tmpxft_0000d051_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `switch-return`
+- `ptxas /tmp/tmpxft_0000d05b_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `short-circuit-logic`
+- `ptxas /tmp/tmpxft_0000d06d_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `switch-default-position`
+- `ptxas /tmp/tmpxft_0000d073_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `struct-parameter`
+- `ptxas /tmp/tmpxft_0000d099_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `unreachable-statement`
+- `ptxas /tmp/tmpxft_0000d09f_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `unsigned-countdown`
+- `ptxas /tmp/tmpxft_0000d0b1_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `void-return`
+- `ptxas /tmp/tmpxft_0000d0b7_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `Asin`
+- `ptxas /tmp/tmpxft_0000d0da_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `Ceil`
+- `ptxas /tmp/tmpxft_0000d0e3_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `unsigned-switch`
+- `ptxas /tmp/tmpxft_0000d106_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `Acos`
+- `ptxas /tmp/tmpxft_0000d119_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `Cos`
+- `ptxas /tmp/tmpxft_0000d124_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `Atan2`
+- `ptxas /tmp/tmpxft_0000d12e_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `value-parameter-mutation`
+- `ptxas /tmp/tmpxft_0000d15e_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `Cosh`
+- `ptxas /tmp/tmpxft_0000d16f_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `vector-conditional`
+- `ptxas /tmp/tmpxft_0000d175_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `Exp2`
+- `ptxas /tmp/tmpxft_0000d193_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `Floor`
+- `ptxas /tmp/tmpxft_0000d1a5_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `Exp`
+- `ptxas /tmp/tmpxft_0000d1af_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `Ldexp`
+- `ptxas /tmp/tmpxft_0000d1b5_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `FAbs`
+- `ptxas /tmp/tmpxft_0000d1d7_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `Fma`
+- `ptxas /tmp/tmpxft_0000d1f3_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `Log`
+- `ptxas /tmp/tmpxft_0000d1f7_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `FMax`
+- `ptxas /tmp/tmpxft_0000d220_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `FrexpStruct`
+- `ptxas /tmp/tmpxft_0000d232_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `Log2`
+- `ptxas /tmp/tmpxft_0000d234_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `FMin`
+- `ptxas /tmp/tmpxft_0000d23e_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `OpAtomicAnd`
+- `ptxas /tmp/tmpxft_0000d262_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `InverseSqrt`
+- `ptxas /tmp/tmpxft_0000d276_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `OpAtomicExchange`
+- `ptxas /tmp/tmpxft_0000d27c_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `OpAtomicCompareExchange`
+- `ptxas /tmp/tmpxft_0000d282_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `ModfStruct`
+- `ptxas /tmp/tmpxft_0000d2a6_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `OpAtomicUMin`
+- `ptxas /tmp/tmpxft_0000d2b9_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `OpAtomicIAdd`
+- `ptxas /tmp/tmpxft_0000d2bf_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `OpBitcast`
+- `ptxas /tmp/tmpxft_0000d2c8_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `Pow`
+- `ptxas /tmp/tmpxft_0000d2ea_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `OpAtomicXor`
+- `ptxas /tmp/tmpxft_0000d2fd_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `OpAtomicOr`
+- `ptxas /tmp/tmpxft_0000d303_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `OpIsInf`
+- `ptxas /tmp/tmpxft_0000d30c_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `Round`
+- `ptxas /tmp/tmpxft_0000d340_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `OpAtomicUMax`
+- `ptxas /tmp/tmpxft_0000d347_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `OpIsNan`
+- `ptxas /tmp/tmpxft_0000d350_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `RoundEven`
+- `ptxas /tmp/tmpxft_0000d35c_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `OpBitReverse`
+- `ptxas /tmp/tmpxft_0000d382_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `Sinh`
+- `ptxas /tmp/tmpxft_0000d389_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `OpMemoryBarrier`
+- `ptxas /tmp/tmpxft_0000d394_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `Sin`
+- `ptxas /tmp/tmpxft_0000d3a0_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `Trunc`
+- `ptxas /tmp/tmpxft_0000d3c7_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `Sqrt`
+- `ptxas /tmp/tmpxft_0000d3cd_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `bool-conversion`
+- `ptxas /tmp/tmpxft_0000d3d8_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `compound-assignment`
+- `ptxas /tmp/tmpxft_0000d3ea_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `aggregate-equality`
+- `ptxas /tmp/tmpxft_0000d408_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `Tan`
+- `ptxas /tmp/tmpxft_0000d40f_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `boolean-logic`
+- `ptxas /tmp/tmpxft_0000d41c_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `float-arithmetic`
+- `ptxas /tmp/tmpxft_0000d42e_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `bitwise-logic`
+- `ptxas /tmp/tmpxft_0000d44e_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `Tanh`
+- `ptxas /tmp/tmpxft_0000d456_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `chained-assignment`
+- `ptxas /tmp/tmpxft_0000d45f_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `float-comparison`
+- `ptxas /tmp/tmpxft_0000d490_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `float-to-integer`
+- `ptxas /tmp/tmpxft_0000d49a_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `comma-operator`
+- `ptxas /tmp/tmpxft_0000d4a4_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `float-remainder`
+- `ptxas /tmp/tmpxft_0000d4c4_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `indexed-compound-assignment`
+- `ptxas /tmp/tmpxft_0000d4d5_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `implicit-conversion`
+- `ptxas /tmp/tmpxft_0000d4df_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `integer-to-float`
+- `ptxas /tmp/tmpxft_0000d4ed_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `operator-precedence`
+- `ptxas /tmp/tmpxft_0000d508_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `integer-arithmetic`
+- `ptxas /tmp/tmpxft_0000d51a_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `increment-decrement`
+- `ptxas /tmp/tmpxft_0000d526_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `lvalue-increment`
+- `ptxas /tmp/tmpxft_0000d52f_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `signed-comparison`
+- `ptxas /tmp/tmpxft_0000d54c_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `integer-division`
+- `ptxas /tmp/tmpxft_0000d55d_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `increment-in-index`
+- `ptxas /tmp/tmpxft_0000d569_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `negation`
+- `ptxas /tmp/tmpxft_0000d573_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `signed-division`
+- `ptxas /tmp/tmpxft_0000d590_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `integer-promotion`
+- `ptxas /tmp/tmpxft_0000d5a1_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `signed-to-unsigned`
+- `ptxas /tmp/tmpxft_0000d5b1_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `nested-unary`
+- `ptxas /tmp/tmpxft_0000d5b7_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `signed-shift`
+- `ptxas /tmp/tmpxft_0000d5d2_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `unsigned-negation`
+- `ptxas /tmp/tmpxft_0000d5e2_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `unsigned-comparison`
+- `ptxas /tmp/tmpxft_0000d5f2_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `buffer-in-helper`
+- `ptxas /tmp/tmpxft_0000d5f5_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `read-only-buffer`
+- `ptxas /tmp/tmpxft_0000d61a_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `unsigned-shift`
+- `ptxas /tmp/tmpxft_0000d626_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `unsigned-division`
+- `ptxas /tmp/tmpxft_0000d636_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `read-write-image`
+- `ptxas /tmp/tmpxft_0000d639_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `integer-buffer`
+- `ptxas /tmp/tmpxft_0000d65e_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `unsigned-wraparound`
+- `ptxas /tmp/tmpxft_0000d66a_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `unsigned-float-conversion`
+- `ptxas /tmp/tmpxft_0000d67a_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `integer-storage-image`
+- `ptxas /tmp/tmpxft_0000d680_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `sampled-texture`
+- `ptxas /tmp/tmpxft_0000d6a2_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `buffer-element-argument`
+- `ptxas /tmp/tmpxft_0000d6ae_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `storage-image-1d`
+- `ptxas /tmp/tmpxft_0000d6c1_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `nested-struct-buffer`
+- `ptxas /tmp/tmpxft_0000d6e6_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `struct-buffer`
+- `ptxas /tmp/tmpxft_0000d6f8_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `storage-image-3d`
+- `ptxas /tmp/tmpxft_0000d702_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `texture-1d`
+- `ptxas /tmp/tmpxft_0000d705_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `texture-argument`
+- `ptxas /tmp/tmpxft_0000d72a_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `struct-buffer-copy`
+- `ptxas /tmp/tmpxft_0000d73c_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `storage-image-array`
+- `ptxas /tmp/tmpxft_0000d746_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `texture-1d-array`
+- `ptxas /tmp/tmpxft_0000d747_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `texture-cube`
+- `ptxas /tmp/tmpxft_0000d770_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `struct-buffer-packing`
+- `ptxas /tmp/tmpxft_0000d780_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `struct-array-buffer`
+- `ptxas /tmp/tmpxft_0000d788_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `texture-cube-array`
+- `ptxas /tmp/tmpxft_0000d78c_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `texture-2d-array`
+- `ptxas /tmp/tmpxft_0000d7b2_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `texel-buffer`
+- `ptxas /tmp/tmpxft_0000d7c4_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `uniform-array`
+- `ptxas /tmp/tmpxft_0000d7cc_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `texture-3d`
+- `ptxas /tmp/tmpxft_0000d7d2_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `texture-in-helper`
+- `ptxas /tmp/tmpxft_0000d809_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `uniform-bool`
+- `ptxas /tmp/tmpxft_0000d80a_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `uniform-std140-array`
+- `ptxas /tmp/tmpxft_0000d84f_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `uniform-buffer`
+- `ptxas /tmp/tmpxft_0000d852_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `uniform-std140-vector`
+- `ptxas /tmp/tmpxft_0000d85b_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `uniform-integer`
+- `ptxas /tmp/tmpxft_0000d86a_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `uniform-unsigned`
+- `ptxas /tmp/tmpxft_0000d8ef_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `uniform-vector-packing`
+- `ptxas /tmp/tmpxft_0000d8f2_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `uniform-members`
+- `ptxas /tmp/tmpxft_0000d8fc_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `uniform-struct-array`
+- `ptxas /tmp/tmpxft_0000d90b_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `uniform-vector-array`
+- `ptxas /tmp/tmpxft_0000d930_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `compute`
+- `ptxas /tmp/tmpxft_0000d93c_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `array-of-structs`
+- `ptxas /tmp/tmpxft_0000d943_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `unsigned-buffer`
+- `ptxas /tmp/tmpxft_0000d972_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `array`
+- `ptxas /tmp/tmpxft_0000d97e_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `constant-array-size`
+- `ptxas /tmp/tmpxft_0000d984_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `bool-array`
+- `ptxas /tmp/tmpxft_0000d989_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `vector-buffer`
+- `ptxas /tmp/tmpxft_0000d9c3_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `constant-expression`
+- `ptxas /tmp/tmpxft_0000d9cf_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `call-result-access`
+- `ptxas /tmp/tmpxft_0000d9e0_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `array-of-arrays`
+- `ptxas /tmp/tmpxft_0000d9f1_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `deferred-initialization`
+- `ptxas /tmp/tmpxft_0000da03_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `constant-struct`
+- `ptxas /tmp/tmpxft_0000da0c_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `const-local`
+- `ptxas /tmp/tmpxft_0000da2d_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `half`
+- `ptxas /tmp/tmpxft_0000da33_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `double`
+- `ptxas /tmp/tmpxft_0000da46_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `int8`
+- `ptxas /tmp/tmpxft_0000da55_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `multiple-declarators`
+- `ptxas /tmp/tmpxft_0000da77_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `int16`
+- `ptxas /tmp/tmpxft_0000da8a_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `integer-literal-limits`
+- `ptxas /tmp/tmpxft_0000da9b_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `nested-member-assignment`
+- `ptxas /tmp/tmpxft_0000dab5_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `int64`
+- `ptxas /tmp/tmpxft_0000dac7_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `octal-literal`
+- `ptxas /tmp/tmpxft_0000dad4_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `literal-suffixes`
+- `ptxas /tmp/tmpxft_0000dae0_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `nested-struct`
+- `ptxas /tmp/tmpxft_0000dafb_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `reserved-identifier`
+- `ptxas /tmp/tmpxft_0000db18_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `local-struct`
+- `ptxas /tmp/tmpxft_0000db24_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `numeric-literals`
+- `ptxas /tmp/tmpxft_0000db36_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `struct-array-member`
+- `ptxas /tmp/tmpxft_0000db44_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `reserved-member-name`
+- `ptxas /tmp/tmpxft_0000db5a_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `struct-vector-member`
+- `ptxas /tmp/tmpxft_0000db66_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `uint8`
+- `ptxas /tmp/tmpxft_0000db76_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `struct-constructor`
+- `ptxas /tmp/tmpxft_0000db88_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `reserved-type-name`
+- `ptxas /tmp/tmpxft_0000dbaa_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `vector-array`
+- `ptxas /tmp/tmpxft_0000dbbb_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `struct-copy`
+- `ptxas /tmp/tmpxft_0000dbc9_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `struct`
+- `ptxas /tmp/tmpxft_0000dbee_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `uint16`
+- `ptxas /tmp/tmpxft_0000dc21_00000000-6_probe.ptx, line N; fatal : Parsing error near '_': syntax error`: `uint64`
+
+</details>
+
+<details>
+<summary>2 untested: type 2</summary>
+
+- `slangc or spirv-dis is not installed` (2): `pointer-arithmetic`, `pointer-local`
+
+</details>
